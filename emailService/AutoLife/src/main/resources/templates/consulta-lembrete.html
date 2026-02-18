@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title th:text="${titulo}">Lembrete de Consulta</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #f5f7fa;
+      padding: 20px;
+      line-height: 1.6;
+    }
+
+    .email-container {
+      max-width: 600px;
+      margin: 0 auto;
+      background-color: #ffffff;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    .header {
+      background: linear-gradient(135deg, #ffa801 0%, #ff6348 100%);
+      padding: 40px 30px;
+      text-align: center;
+      color: white;
+    }
+
+    .header-icon {
+      font-size: 50px;
+      margin-bottom: 10px;
+      animation: ring 1s ease-in-out infinite;
+    }
+
+    @keyframes ring {
+      0%, 100% { transform: rotate(0deg); }
+      10%, 30% { transform: rotate(-10deg); }
+      20%, 40% { transform: rotate(10deg); }
+    }
+
+    .header h1 {
+      font-size: 28px;
+      font-weight: 600;
+      margin: 0;
+    }
+
+    .header p {
+      font-size: 14px;
+      opacity: 0.9;
+      margin-top: 5px;
+    }
+
+    .content {
+      padding: 40px 30px;
+    }
+
+    .greeting {
+      font-size: 18px;
+      color: #2d3748;
+      margin-bottom: 20px;
+    }
+
+    .greeting strong {
+      color: #ffa801;
+    }
+
+    .message {
+      font-size: 15px;
+      color: #4a5568;
+      margin-bottom: 30px;
+      line-height: 1.6;
+    }
+
+    .destaque-lembrete {
+      background: linear-gradient(135deg, #fff5e1 0%, #ffe4b5 100%);
+      border: 3px solid #ffa801;
+      border-radius: 12px;
+      padding: 30px;
+      text-align: center;
+      margin: 30px 0;
+      box-shadow: 0 4px 10px rgba(255, 168, 1, 0.2);
+    }
+
+    .destaque-lembrete-icone {
+      font-size: 40px;
+      margin-bottom: 15px;
+    }
+
+    .destaque-lembrete-titulo {
+      font-size: 18px;
+      color: #e67e22;
+      font-weight: 600;
+      margin-bottom: 15px;
+    }
+
+    .destaque-data-hora {
+      background-color: white;
+      border-radius: 8px;
+      padding: 20px;
+      margin: 15px 0;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+
+    .data-hora-item {
+      display: inline-block;
+      margin: 0 15px;
+    }
+
+    .data-hora-label {
+      font-size: 12px;
+      color: #718096;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .data-hora-valor {
+      font-size: 24px;
+      font-weight: 700;
+      color: #ff6348;
+      margin-top: 5px;
+    }
+
+    .consulta-card {
+      background: linear-gradient(135deg, #ffa80115 0%, #ff634815 100%);
+      border-left: 4px solid #ffa801;
+      border-radius: 8px;
+      padding: 25px;
+      margin: 25px 0;
+    }
+
+    .consulta-item {
+      display: flex;
+      align-items: flex-start;
+      padding: 12px 0;
+      border-bottom: 1px solid rgba(255, 168, 1, 0.1);
+    }
+
+    .consulta-item:last-child {
+      border-bottom: none;
+    }
+
+    .consulta-icon {
+      font-size: 20px;
+      margin-right: 12px;
+      min-width: 25px;
+    }
+
+    .consulta-label {
+      font-weight: 600;
+      color: #4a5568;
+      min-width: 120px;
+      font-size: 14px;
+    }
+
+    .consulta-value {
+      color: #2d3748;
+      font-size: 15px;
+      font-weight: 500;
+    }
+
+    .checklist {
+      background-color: #e8f5e9;
+      border-radius: 8px;
+      padding: 25px;
+      margin: 25px 0;
+    }
+
+    .checklist-titulo {
+      font-size: 17px;
+      font-weight: 600;
+      color: #2e7d32;
+      margin-bottom: 15px;
+      display: flex;
+      align-items: center;
+    }
+
+    .checklist-titulo span {
+      margin-right: 8px;
+      font-size: 22px;
+    }
+
+    .checklist-item {
+      display: flex;
+      align-items: flex-start;
+      padding: 10px 0;
+      color: #33691e;
+      font-size: 14px;
+    }
+
+    .checklist-item::before {
+      content: "✓";
+      background-color: #4caf50;
+      color: white;
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      margin-right: 10px;
+      font-weight: bold;
+      font-size: 12px;
+      flex-shrink: 0;
+    }
+
+    .footer {
+      background-color: #f7fafc;
+      padding: 30px;
+      text-align: center;
+      border-top: 1px solid #e2e8f0;
+    }
+
+    .footer-logo {
+      font-size: 16px;
+      font-weight: 600;
+      color: #ffa801;
+      margin-bottom: 10px;
+    }
+
+    .footer-text {
+      font-size: 13px;
+      color: #718096;
+      line-height: 1.5;
+    }
+  </style>
+</head>
+<body>
+<div class="email-container">
+  <div class="header">
+    <h1 th:text="${titulo}">Lembrete de Consulta</h1>
+    <p>Não esqueça do seu compromisso!</p>
+  </div>
+
+  <div class="content">
+    <p class="greeting">
+      Olá <strong th:text="${pacienteNome}">Paciente</strong>!
+    </p>
+
+    <p class="message">
+      Este é um <strong>lembrete amigável</strong> sobre sua consulta agendada.
+      Não esqueça! ⏰
+    </p>
+
+    <div class="destaque-lembrete">
+      <div class="destaque-lembrete-icone">📅</div>
+      <div class="destaque-lembrete-titulo">Sua consulta está próxima!</div>
+
+      <div class="destaque-data-hora">
+        <div class="data-hora-item">
+          <div class="data-hora-label">Data</div>
+          <div class="data-hora-valor" th:text="${dataConsulta}">15/02/2026</div>
+        </div>
+        <div class="data-hora-item">
+          <div class="data-hora-label">Horário</div>
+          <div class="data-hora-valor" th:text="${horaConsulta}">14:30</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="consulta-card">
+      <div class="consulta-item">
+        <span class="consulta-label">Médico(a):</span>
+        <span class="consulta-value" th:text="${medicoNome}">Dr. João Silva</span>
+      </div>
+
+      <div class="consulta-item">
+        <span class="consulta-label">Especialidade:</span>
+        <span class="consulta-value" th:text="${especialidade}">Cardiologia</span>
+      </div>
+
+      <div class="consulta-item">
+        <span class="consulta-label">Local:</span>
+        <span class="consulta-value" th:text="${local}">Clínica Central</span>
+      </div>
+    </div>
+
+    <div class="checklist">
+      <div class="checklist-titulo">
+        <span>📋</span>
+        <span>Checklist para sua consulta:</span>
+      </div>
+
+      <div class="checklist-item">
+        Chegue com <strong>15 minutos de antecedência</strong>
+      </div>
+      <div class="checklist-item">
+        Documento de identidade com foto
+      </div>
+      <div class="checklist-item">
+        Carteirinha do convênio de saúde
+      </div>
+      <div class="checklist-item">
+        Exames anteriores relacionados ao atendimento
+      </div>
+      <div class="checklist-item">
+        Lista de medicamentos que está usando atualmente
+      </div>
+      <div class="checklist-item">
+        Anote suas dúvidas para não esquecer de perguntar
+      </div>
+    </div>
+  </div>
+
+  <div class="footer">
+    <div class="footer-logo" th:text="${appName}">AutoLife</div>
+    <p class="footer-text">
+      Este é um email automático, por favor não responda.<br>
+      © 2026 - Todos os direitos reservados
+    </p>
+  </div>
+</div>
+</body>
+</html>

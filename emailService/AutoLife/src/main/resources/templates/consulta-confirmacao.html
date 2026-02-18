@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title th:text="${titulo}">Confirmação de Consulta</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #f5f7fa;
+      padding: 20px;
+      line-height: 1.6;
+    }
+
+    .email-container {
+      max-width: 600px;
+      margin: 0 auto;
+      background-color: #ffffff;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    .header {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      padding: 40px 30px;
+      text-align: center;
+      color: white;
+    }
+
+    .header-icon {
+      font-size: 50px;
+      margin-bottom: 10px;
+    }
+
+    .header h1 {
+      font-size: 28px;
+      font-weight: 600;
+      margin: 0;
+    }
+
+    .header p {
+      font-size: 14px;
+      opacity: 0.9;
+      margin-top: 5px;
+    }
+
+    .content {
+      padding: 40px 30px;
+    }
+
+    .greeting {
+      font-size: 18px;
+      color: #2d3748;
+      margin-bottom: 20px;
+    }
+
+    .greeting strong {
+      color: #667eea;
+    }
+
+    .message {
+      font-size: 15px;
+      color: #4a5568;
+      margin-bottom: 30px;
+      line-height: 1.6;
+    }
+
+    .consulta-card {
+      background: linear-gradient(135deg, #667eea15 0%, #764ba215 100%);
+      border-left: 4px solid #667eea;
+      border-radius: 8px;
+      padding: 25px;
+      margin: 25px 0;
+    }
+
+    .consulta-item {
+      display: flex;
+      align-items: flex-start;
+      padding: 12px 0;
+      border-bottom: 1px solid rgba(102, 126, 234, 0.1);
+    }
+
+    .consulta-item:last-child {
+      border-bottom: none;
+    }
+
+    .consulta-icon {
+      font-size: 20px;
+      margin-right: 12px;
+      min-width: 25px;
+    }
+
+    .consulta-label {
+      font-weight: 600;
+      color: #4a5568;
+      min-width: 120px;
+      font-size: 14px;
+    }
+
+    .consulta-value {
+      color: #2d3748;
+      font-size: 15px;
+      font-weight: 500;
+    }
+
+    .destaque-box {
+      background-color: #fef3c7;
+      border: 2px solid #fbbf24;
+      border-radius: 8px;
+      padding: 20px;
+      margin: 25px 0;
+    }
+
+    .destaque-box strong {
+      color: #92400e;
+      font-size: 16px;
+    }
+
+    .destaque-box ul {
+      margin-top: 12px;
+      padding-left: 20px;
+    }
+
+    .destaque-box li {
+      color: #78350f;
+      margin: 8px 0;
+      font-size: 14px;
+    }
+
+    .footer {
+      background-color: #f7fafc;
+      padding: 30px;
+      text-align: center;
+      border-top: 1px solid #e2e8f0;
+    }
+
+    .footer-logo {
+      font-size: 16px;
+      font-weight: 600;
+      color: #667eea;
+      margin-bottom: 10px;
+    }
+
+    .footer-text {
+      font-size: 13px;
+      color: #718096;
+      line-height: 1.5;
+    }
+  </style>
+</head>
+<body>
+<div class="email-container">
+  <div class="header">
+    <h1 th:text="${titulo}">Consulta Confirmada!</h1>
+    <p>Tudo certo com seu agendamento</p>
+  </div>
+
+  <div class="content">
+    <p class="greeting">
+      Olá <strong th:text="${pacienteNome}">Paciente</strong>!
+    </p>
+
+    <p class="message" th:text="${mensagem}">
+      Sua consulta foi agendada com sucesso. Confira os detalhes abaixo:
+    </p>
+
+    <div class="consulta-card">
+      <div class="consulta-item">
+        <span class="consulta-label">Médico(a):</span>
+        <span class="consulta-value" th:text="${medicoNome}">Dr. João Silva</span>
+      </div>
+
+      <div class="consulta-item">
+        <span class="consulta-label">Especialidade:</span>
+        <span class="consulta-value" th:text="${especialidade}">Cardiologia</span>
+      </div>
+
+      <div class="consulta-item">
+        <span class="consulta-label">Data:</span>
+        <span class="consulta-value" th:text="${dataConsulta}">15/02/2026</span>
+      </div>
+
+      <div class="consulta-item">
+        <span class="consulta-label">Horário:</span>
+        <span class="consulta-value" th:text="${horaConsulta}">14:30</span>
+      </div>
+
+      <div class="consulta-item">
+        <span class="consulta-label">Local:</span>
+        <span class="consulta-value" th:text="${local}">Clínica Autolife</span>
+      </div>
+    </div>
+
+    <div class="destaque-box">
+      <strong>⚠️ Informações Importantes:</strong>
+      <ul>
+        <li><strong>Chegue 15 minutos antes</strong> para realizar o cadastro</li>
+        <li>Traga <strong>documento de identidade</strong> e carteirinha do convênio</li>
+        <li>Se possível, leve <strong>exames anteriores</strong> relacionados</li>
+        <li>Em caso de impossibilidade, <strong>cancele com antecedência</strong></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="footer">
+    <div class="footer-logo" th:text="${appName}">AutoLife</div>
+    <p class="footer-text">
+      Este é um email automático, por favor não responda.<br>
+      © 2026 - Todos os direitos reservados
+    </p>
+  </div>
+</div>
+</body>
+</html>

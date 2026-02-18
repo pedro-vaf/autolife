@@ -1,0 +1,13 @@
+# Default
+* text=auto
+
+# Windows scripts
+*.cmd text eol=crlf
+*.bat text eol=crlf
+
+# Shell scripts
+*.sh text eol=lf
+
+# Java
+*.java text eol=lf
+ 

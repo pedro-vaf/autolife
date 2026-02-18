@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bem-vindo!</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #f5f7fa;
+      padding: 20px;
+      line-height: 1.6;
+    }
+
+    .email-container {
+      max-width: 600px;
+      margin: 0 auto;
+      background-color: #ffffff;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    .header {
+      background: linear-gradient(135deg, #00b894 0%, #00cec9 100%);
+      padding: 50px 30px;
+      text-align: center;
+      color: white;
+    }
+
+    @keyframes bounce {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+    }
+
+    .header h1 {
+      font-size: 32px;
+      font-weight: 600;
+      margin: 0;
+      margin-bottom: 10px;
+    }
+
+    .header p {
+      font-size: 16px;
+      opacity: 0.95;
+    }
+
+    .content {
+      padding: 40px 30px;
+    }
+
+    .greeting {
+      font-size: 20px;
+      color: #2d3748;
+      margin-bottom: 25px;
+      text-align: center;
+    }
+
+    .greeting strong {
+      color: #00b894;
+      font-size: 24px;
+    }
+
+    .message {
+      font-size: 16px;
+      color: #4a5568;
+      margin-bottom: 30px;
+      text-align: center;
+      line-height: 1.8;
+    }
+
+    .credenciais-titulo span {
+      margin-right: 10px;
+      font-size: 24px;
+    }
+
+    .recurso-item span {
+      font-size: 20px;
+      margin-right: 12px;
+    }
+
+    .recurso-item p {
+      color: #1565c0;
+      font-size: 14px;
+      margin: 0;
+    }
+    .alert-senha strong {
+      color: #856404;
+      font-size: 16px;
+      display: block;
+      margin-bottom: 10px;
+    }
+
+    .alert-senha p {
+      color: #78350f;
+      font-size: 14px;
+      margin: 0;
+    }
+    .footer {
+      background-color: #f7fafc;
+      padding: 30px;
+      text-align: center;
+      border-top: 1px solid #e2e8f0;
+    }
+
+    .footer-logo {
+      font-size: 16px;
+      font-weight: 600;
+      color: #00b894;
+      margin-bottom: 10px;
+    }
+
+    .footer-text {
+      font-size: 13px;
+      color: #718096;
+      line-height: 1.5;
+    }
+  </style>
+</head>
+<body>
+  <div class="email-container">
+    <div class="header">
+      <h1>Bem-vindo à nossa Clínica!</h1>
+      <p>Seu cadastro foi realizado com sucesso</p>
+    </div>
+
+    <div class="content">
+      <p class="greeting">
+        Olá, <strong th:text="${pacienteNome}">João Silva</strong>!
+      </p>
+
+      <p class="message">
+        É um prazer tê-lo(a) conosco!<br>
+        Agora você faz parte do quadro de paciente da AutoLife.
+      </p>
+
+      <div class="footer">
+        <div class="footer-logo" th:text="${nomeClinica}">AutoLife</div>
+        <p class="footer-text">
+          Este é um email automático, por favor não responda.<br>
+          © 2026 - Todos os direitos reservados
+        </p>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

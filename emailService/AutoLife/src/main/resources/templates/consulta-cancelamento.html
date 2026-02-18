@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title th:text="${titulo}">Consulta Cancelada</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f5f7fa;
+            padding: 20px;
+            line-height: 1.6;
+        }
+
+        .email-container {
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: #ffffff;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .header {
+            background: linear-gradient(135deg, #fc5c65 0%, #fd79a8 100%);
+            padding: 40px 30px;
+            text-align: center;
+            color: white;
+        }
+
+        .header-icon {
+            font-size: 50px;
+            margin-bottom: 10px;
+        }
+
+        .header h1 {
+            font-size: 28px;
+            font-weight: 600;
+            margin: 0;
+        }
+
+        .header p {
+            font-size: 14px;
+            opacity: 0.9;
+            margin-top: 5px;
+        }
+
+        .content {
+            padding: 40px 30px;
+        }
+
+        .greeting {
+            font-size: 18px;
+            color: #2d3748;
+            margin-bottom: 20px;
+        }
+
+        .greeting strong {
+            color: #fc5c65;
+        }
+
+        .message {
+            font-size: 15px;
+            color: #4a5568;
+            margin-bottom: 30px;
+            line-height: 1.6;
+        }
+
+        .consulta-card {
+            background: linear-gradient(135deg, #fc5c6515 0%, #fd79a815 100%);
+            border-left: 4px solid #fc5c65;
+            border-radius: 8px;
+            padding: 25px;
+            margin: 25px 0;
+        }
+
+        .consulta-item {
+            display: flex;
+            align-items: flex-start;
+            padding: 12px 0;
+            border-bottom: 1px solid rgba(252, 92, 101, 0.1);
+        }
+
+        .consulta-item:last-child {
+            border-bottom: none;
+        }
+
+        .consulta-icon {
+            font-size: 20px;
+            margin-right: 12px;
+            min-width: 25px;
+        }
+
+        .consulta-label {
+            font-weight: 600;
+            color: #4a5568;
+            min-width: 120px;
+            font-size: 14px;
+        }
+
+        .consulta-value {
+            color: #2d3748;
+            font-size: 15px;
+            font-weight: 500;
+        }
+
+        .status-badge {
+            display: inline-block;
+            background-color: #fc5c65;
+            color: white;
+            padding: 6px 16px;
+            border-radius: 20px;
+            font-size: 13px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .info-box {
+            background: linear-gradient(135deg, #a8e6cf 0%, #dcedc8 100%);
+            border-left: 4px solid #4caf50;
+            border-radius: 8px;
+            padding: 25px;
+            margin: 25px 0;
+        }
+
+        .info-box-title {
+            font-size: 17px;
+            font-weight: 600;
+            color: #2e7d32;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+        }
+
+        .info-box-title span {
+            margin-right: 8px;
+            font-size: 22px;
+        }
+
+        .info-box p {
+            color: #33691e;
+            font-size: 14px;
+            line-height: 1.6;
+        }
+
+        .footer {
+            background-color: #f7fafc;
+            padding: 30px;
+            text-align: center;
+            border-top: 1px solid #e2e8f0;
+        }
+
+        .footer-logo {
+            font-size: 16px;
+            font-weight: 600;
+            color: #fc5c65;
+            margin-bottom: 10px;
+        }
+
+        .footer-text {
+            font-size: 13px;
+            color: #718096;
+            line-height: 1.5;
+        }
+        .note {
+            background-color: #fff3cd;
+            border: 1px solid #ffc107;
+            border-radius: 8px;
+            padding: 15px;
+            margin: 20px 0;
+            font-size: 14px;
+            color: #856404;
+        }
+    </style>
+</head>
+<body>
+<div class="email-container">
+    <div class="header">
+        <h1 th:text="${titulo}">Consulta Cancelada</h1>
+        <p>Seu agendamento foi cancelado</p>
+    </div>
+
+    <div class="content">
+        <p class="greeting">
+            Olá <strong th:text="${pacienteNome}">Paciente</strong>,
+        </p>
+
+        <p class="message">
+            Informamos que sua consulta foi <strong>cancelada</strong>.
+            Confira abaixo os detalhes do agendamento que foi cancelado:
+        </p>
+
+        <div style="text-align: center; margin: 20px 0;">
+            <span class="status-badge">● CANCELADA</span>
+        </div>
+
+        <div class="consulta-card">
+            <div class="consulta-item">
+                <span class="consulta-label">Médico(a):</span>
+                <span class="consulta-value" th:text="${medicoNome}">Dr. João Silva</span>
+            </div>
+
+            <div class="consulta-item">
+                <span class="consulta-label">Especialidade:</span>
+                <span class="consulta-value" th:text="${especialidade}">Cardiologia</span>
+            </div>
+
+            <div class="consulta-item">
+                <span class="consulta-label">Data:</span>
+                <span class="consulta-value" th:text="${dataConsulta}">15/02/2026</span>
+            </div>
+
+            <div class="consulta-item">
+                <span class="consulta-label">Horário:</span>
+                <span class="consulta-value" th:text="${horaConsulta}">14:30</span>
+            </div>
+
+            <div class="consulta-item">
+                <span class="consulta-label">Local:</span>
+                <span class="consulta-value" th:text="${local}">Clínica Central</span>
+            </div>
+        </div>
+
+        <div class="info-box">
+            <div class="info-box-title">
+                <span>💚</span>
+                <span>Precisa reagendar?</span>
+            </div>
+            <p>
+                Estamos à disposição para agendar uma nova consulta!<br>
+                Entre em contato conosco através dos nossos canais de atendimento.<br>
+                Teremos prazer em atendê-lo novamente.
+            </p>
+        </div>
+    </div>
+
+    <div class="footer">
+        <div class="footer-logo" th:text="${appName}">AutoLife</div>
+        <p class="footer-text">
+            Este é um email automático, por favor não responda.<br>
+            © 2026 - Todos os direitos reservados
+        </p>
+    </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bem-vindo Dr(a)!</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f5f7fa;
+            padding: 20px;
+            line-height: 1.6;
+        }
+
+        .email-container {
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: #ffffff;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 50px 30px;
+            text-align: center;
+            color: white;
+        }
+
+        .header h1 {
+            font-size: 32px;
+            font-weight: 600;
+            margin: 0;
+            margin-bottom: 10px;
+        }
+
+        .header .badge {
+            display: inline-block;
+            background: rgba(255,255,255,0.2);
+            padding: 6px 20px;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: 600;
+            margin-top: 10px;
+        }
+
+        .content {
+            padding: 40px 30px;
+        }
+
+        .greeting {
+            font-size: 20px;
+            color: #2d3748;
+            margin-bottom: 25px;
+            text-align: center;
+        }
+
+        .greeting strong {
+            color: #667eea;
+            font-size: 24px;
+        }
+
+        .message {
+            font-size: 16px;
+            color: #4a5568;
+            margin-bottom: 30px;
+            text-align: center;
+            line-height: 1.8;
+        }
+
+        .credenciais-titulo span {
+            margin-right: 10px;
+            font-size: 24px;
+        }
+
+        .recursos-titulo span {
+            margin-right: 8px;
+            font-size: 22px;
+        }
+
+        .recurso-item span {
+            font-size: 18px;
+            margin-right: 12px;
+        }
+
+        .recurso-item p {
+            color: #2e7d32;
+            font-size: 14px;
+            margin: 0;
+            font-weight: 500;
+        }
+
+        .info-profissional strong {
+            color: #856404;
+            font-size: 16px;
+            display: block;
+            margin-bottom: 12px;
+        }
+
+        .footer {
+            background-color: #f7fafc;
+            padding: 30px;
+            text-align: center;
+            border-top: 1px solid #e2e8f0;
+        }
+
+        .footer-logo {
+            font-size: 16px;
+            font-weight: 600;
+            color: #667eea;
+            margin-bottom: 10px;
+        }
+
+        .footer-text {
+            font-size: 13px;
+            color: #718096;
+            line-height: 1.5;
+        }
+    </style>
+</head>
+<body>
+<div class="email-container">
+    <div class="header">
+        <h1>Bem-vindo(a) à Equipe!</h1>
+        <div class="badge">CORPO CLÍNICO</div>
+    </div>
+
+    <div class="content">
+        <p class="greeting">
+            Olá, <strong th:text="${medicoNome}">Dr. João Silva</strong>!
+        </p>
+
+        <p class="message">
+            É uma honra tê-lo(a) em nossa equipe médica!<br>
+            Seu cadastro foi concluído por um administrador no nosso sistema.
+        </p>
+
+    </div>
+
+    <div class="footer">
+        <div class="footer-logo" th:text="${nomeClinica}">Clínica AutoLife</div>
+        <p class="footer-text">
+            Este é um email automático, por favor não responda.<br>
+            © 2026 - Todos os direitos reservados
+        </p>
+    </div>
+</div>
+</body>
+</html>

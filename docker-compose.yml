@@ -1,0 +1,88 @@
+version: "3.8"
+
+services:
+  rabbitmq:
+    image: rabbitmq:3-management
+    container_name: rabbitmq
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+
+  eureka:
+    build: ./eurekaServer/AutoLife
+    container_name: eureka
+    ports:
+      - "5000:5000"
+    environment:
+      - SERVER_PORT=5000
+    healthcheck:
+      test: ["CMD", "wget", "-qO-", "http://localhost:5000/actuator/health"]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+    restart: always
+
+  gateway:
+    build: ./gateway/AutoLife
+    container_name: gateway
+    ports:
+      - "5001:5001"
+    depends_on:
+      - eureka
+    environment:
+      - SERVER_PORT=5001
+      - EUREKA_CLIENT_SERVICEURL_DEFAULTZONE=http://eureka:5000/eureka
+    restart: always
+
+  backend:
+    build: ./backend/AutoLife
+    container_name: backend
+    ports:
+      - "5440:5440"
+    depends_on:
+      - eureka
+      - rabbitmq
+    environment:
+      - SERVER_PORT=5440
+      - EUREKA_CLIENT_SERVICEURL_DEFAULTZONE=http://eureka:5000/eureka
+      - SPRING_RABBITMQ_HOST=rabbitmq
+      - SPRING_RABBITMQ_PORT=5672
+    restart: always
+
+  email:
+    build: ./emailService/AutoLife
+    container_name: email
+    ports:
+      - "5442:5442"
+    depends_on:
+      - rabbitmq
+      - eureka
+    environment:
+      - SERVER_PORT=5442
+      - EUREKA_CLIENT_SERVICEURL_DEFAULTZONE=http://eureka:5000/eureka
+      - SPRING_RABBITMQ_HOST=rabbitmq
+      - SPRING_RABBITMQ_PORT=5672
+    restart: always
+
+  notificacao:
+    build: ./notificacaoService/AutoLife
+    container_name: notificacao
+    ports:
+      - "5443:5443"
+    depends_on:
+      - rabbitmq
+      - eureka
+    environment:
+      - SERVER_PORT=5443
+      - EUREKA_CLIENT_SERVICEURL_DEFAULTZONE=http://eureka:5000/eureka
+      - SPRING_RABBITMQ_HOST=rabbitmq
+      - SPRING_RABBITMQ_PORT=5672
+    restart: always
+
+  frontend:
+    build: ./frontend/AutoLife
+    container_name: frontend
+    ports:
+      - "5173:5173"
+    depends_on:
+      - gateway
